@@ -1,0 +1,23 @@
+{
+  "name": "web-chat",
+  "version": "1.0.0",
+  "description": "a simple web chat by websocket",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "oonnnoo",
+  "license": "ISC",
+  "dependencies": {
+    "nodeman": "^1.1.2",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "github.com/oonnnoo/web-chat.git"
+  },
+  "keywords": [
+    "chat"
+  ]
+}

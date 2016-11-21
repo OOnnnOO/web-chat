@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>websocket</title>
+</head>
+
+<body>
+  <input type="text" id="text" placeholder="请输入">
+  <button> Send</button>
+
+  <div id="log">
+
+  </div>
+  <script>
+    var log = document.getElementById('log');
+    var name = prompt('what is you name falla?');
+    var sock = new WebSocket('ws://localhost:5001');
+    // sock.onopen = function(event) {
+    //   alert('Socket connected successful');
+    //   setTimeout(function() {
+    //     sock.send("hey there");
+    //   }, 1000);
+    // };
+    //
+    sock.onopen = function() {
+      sock.send(JSON.stringify({
+        type: "name",
+        data: name
+      }));
+    }
+
+    sock.onmessage = function(event) {
+      console.log(event);
+      var json = JSON.parse(event.data);
+      log.innerHTML += json.name + ":" + json.data + "<br/>";
+    }
+
+    document.querySelector('button').onclick = function() {
+      // sock.send('hello');
+      var text = document.getElementById('text').value;
+      // sock.send(text);
+      sock.send(JSON.stringify({
+        type: 'message',
+        data: text
+      }));
+
+      log.innerHTML += "you:" + text + "<br/>";
+    }
+
+  </script>
+
+</body>
+
+</html>
